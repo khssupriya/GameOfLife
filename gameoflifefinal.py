@@ -15,12 +15,11 @@ BLACK = (0, 0, 0)
 ALIVE = 1
 DEAD = 0
 
-def print_grid(change):
+def print_grid():
     for i in range(ROWS):
         for j in range(COLS):
             color = {ALIVE:(255, 255, 255), DEAD:BLACK}[grid[i][j]]
             pygame.draw.rect(screen, color, (i*side,j*side,side-1,side-1), 0)
-    change += 1
 
 def count_neighbours(x, y, grid):
     neighbours = -grid[x][y]
@@ -41,8 +40,6 @@ def update_grid():
                 grid[i][j] = DEAD
 
 #--------------------------
-change = 10
-
 running = True
 while running:
 
@@ -52,9 +49,7 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-    print_grid(change)
+    print_grid()
     update_grid()
-
-    change += 1
 
     pygame.display.update()
